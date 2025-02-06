@@ -22,6 +22,8 @@ def main():
             await client.load_extension(f"cogs.{cog[:-3]}")
             print(f"Loaded {cog}")  # simple debug print
 
+        print(f"{client.user.name} has logged in.")
+
     client.run(get_token())
 
 
