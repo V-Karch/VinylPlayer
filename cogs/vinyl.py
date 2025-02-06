@@ -42,9 +42,6 @@ class Vinyl(commands.Cog):
                 lambda: self.ytdl.extract_info(song_url, download=False),
             )  # Get the rest of the data about the song
 
-            with open("song_data.json", "w") as f:
-                json.dump(song_data, f, indent=4)
-
             player = discord.FFmpegPCMAudio(song_data.get("url"), options="-vn")
 
             embed = discord.Embed(
