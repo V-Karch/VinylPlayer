@@ -20,14 +20,14 @@ def main():
     async def setup_hook():
         for cog in os.listdir("cogs"):
             if not cog.endswith(".py"):
-                continue # Skip if not cog
+                continue  # Skip if not cog
 
             await client.load_extension(f"cogs.{cog[:-3]}")
             print(f"Loaded {cog}")  # simple debug print
 
         print(f"{client.user.name} has logged in.")
 
-    @client.command(name = "sync")
+    @client.command(name="sync")
     async def sync(context: commands.Context):
         if context.author.id == 923600698967461898:
             await client.tree.sync()
