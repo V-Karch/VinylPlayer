@@ -1,9 +1,12 @@
+import os
 import discord
 from discord.ext import commands
+
 
 def get_token():
     with open("token.txt", "r") as f:
         return f.read()
+
 
 def main():
     client = commands.Bot(
@@ -13,7 +16,14 @@ def main():
         description="Plays some records",
     )
 
+    @client.event
+    async def setup_hook():
+        for cog in os.listdir("cogs"):
+            await client.load_extension(f"cogs.{cog[:-3]}")
+            print(f"Loaded {cog}")  # simple debug print
+
     client.run(get_token())
+
 
 if __name__ == "__main__":
     main()
